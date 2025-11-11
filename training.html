@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Research Training - Tanjim Taharat Aurpa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #333;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background-color: #8B0000;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.98rem;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.8;
+    }
+
+    .search-icon {
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Hamburger Menu (Mobile) */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Mobile Menu */
+    @media (max-width: 992px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #8B0000;
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active {
+        max-height: 500px;
+        padding: 15px 0;
+      }
+
+      .nav-links a {
+        padding: 12px 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      nav {
+        padding: 15px 20px;
+      }
+    }
+
+    /* Hero Banner - Research Training */
+    .hero-banner {
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('https://t3.ftcdn.net/jpg/08/04/70/66/360_F_804706603_CFdUbQ5S8TFod9vzKPHsPev1Q5q5Tr3Q.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      text-align: center;
+      padding: 120px 20px;
+      margin-bottom: 70px;
+      position: relative;
+    }
+
+    .hero-banner h1 {
+      font-size: 5rem;
+      font-weight: 900;
+      letter-spacing: 8px;
+      text-shadow: 4px 4px 15px rgba(0,0,0,0.8);
+      margin: 0;
+      color: #fff;
+    }
+
+    /* Training Section */
+    .training-container {
+      max-width: 1000px;
+      margin: 0 auto 100px;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    .training-item {
+      margin-bottom: 32px;
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.9;
+    }
+
+    .training-item strong {
+      color: #333;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #8B0000;
+      color: white;
+      text-align: center;
+      padding: 22px 20px;
+      font-size: 0.95rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-content i {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .footer-content a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-content a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-banner {
+        background-attachment: scroll;
+        padding: 100px 20px;
+      }
+      .hero-banner h1 {
+        font-size: 3.8rem;
+        letter-spacing: 6px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-banner h1 {
+        font-size: 3rem;
+        letter-spacing: 4px;
+      }
+      .training-container {
+        padding: 0 15px;
+      }
+      .training-item {
+        font-size: 0.98rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .logo {
+        font-size: 1.3rem;
+      }
+      .search-icon {
+        font-size: 1.1rem;
+      }
+      .hero-banner {
+        padding: 80px 15px;
+      }
+      .hero-banner h1 {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Responsive Navbar -->
+  <header>
+    <nav>
+      <div class="logo">Aurpa</div>
+
+      <!-- Desktop Links -->
+     <div class="nav-links" id="navLinks">
+        <a href="index.html">Bio</a>
+        <a href="experiences.html">Experience</a>
+        <a href="education.html">Education</a>
+        <a href="research.html">Research Profile</a>
+        <a href="publication.html">Publications</a>
+        <a href="training.html">Research Training</a>
+        <a href="programming.html">Programming Skills</a>
+        <a href="language.html">Language Proficiency</a>
+      </div>
+
+      <!-- Search + Hamburger -->
+      <div class="search-icon">Search</div>
+      <div class="hamburger" id="hamburger">Menu</div>
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <h1>Research Training</h1>
+  </section>
+
+  <!-- Training Content -->
+  <div class="training-container">
+
+    <div class="training-item">
+      <strong>Award Leader</strong> , The Duke of Edinburgh's Award, Mar 31,2025 to Continue.<br>
+      <strong>Research Publication Award</strong>, University of Frontier Technology, Bangladesh, 2024.
+    </div>
+
+    <div class="training-item">
+      <strong>Lecturer </strong> , Department of Educational technology, University of Frontier Technology, Bangladesh, Aug 28,2023 to Jan 24,2031<br>
+      <strong>University Grants Commission Financed Research</strong>, University of Frontier Technology, Bangladesh, 2024-25.
+    </div>
+
+    <div class="training-item">
+      <strong>Lecturer</strong> , International University of Business Agriculture and Technology, Sep 22,2014 to Aug 23,2027<br>
+      <strong>University Grants Commission Financed Research</strong>, University of Frontier Technology, Bangladesh, 2023-24.
+    </div>
+
+    <div class="training-item">
+      <strong>Research Assistant</strong> , Artificial Intelligence and Cybernetics (AGenCy) lab at the Independent University Bangladesh (IUB), Mar 1,2022 to Jun 30,2022<br>
+      <strong>Miyan Publication Award</strong>, International University of Business Agriculture and Technology, 2022.
+    </div>
+
+    <div class="training-item">
+      <strong>National Science and Technology Fellowship</strong>, Ministry of Science and Technology Bangladesh, 2022-23.
+    </div>
+
+    <div class="training-item">
+      <strong>The Duke of Edinburgh's Award (Direct Gold)</strong>, The Duke of Edinburgh's Award Foundation Bangladesh, 2020-2021.
+    </div>
+
+    <div class="training-item">
+      <strong>Best Paper Award</strong>, IEEE Region 10 Symposium (TENSYMP) 2020, June 2020.
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <i class="fas fa-envelope"></i>
+      <span>Email: 
+        <a href="mailto:aurpa0001@uftb.ac.bd">aurpa0001@uftb.ac.bd</a>, 
+        <a href="mailto:tanjimaurpa@gmail.com">tanjimaurpa@gmail.com</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Search click
+    document.querySelector('.search-icon').addEventListener('click', () => {
+      alert('Search feature coming soon!');
+    });
+  </script>
+
+</body>
+</html>

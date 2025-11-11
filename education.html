@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Education - Tanjim Taharat Aurpa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #333;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background-color: #8B0000;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.98rem;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.8;
+    }
+
+    .search-icon {
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Hamburger Menu (Mobile) */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Mobile Menu */
+    @media (max-width: 992px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #8B0000;
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active {
+        max-height: 500px;
+        padding: 15px 0;
+      }
+
+      .nav-links a {
+        padding: 12px 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      nav {
+        padding: 15px 20px;
+      }
+    }
+
+    /* Hero Banner - EDUCATION with Bookshelf Background */
+    .hero-banner {
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      text-align: center;
+      padding: 120px 20px;
+      margin-bottom: 70px;
+      position: relative;
+    }
+
+    .hero-banner h1 {
+      font-size: 5.5rem;
+      font-weight: 900;
+      letter-spacing: 12px;
+      text-shadow: 5px 5px 20px rgba(0,0,0,0.9);
+      margin: 0;
+      color: #fff;
+    }
+
+    /* Education Section */
+    .education-container {
+      max-width: 900px;
+      margin: 0 auto 100px;
+      padding: 0 20px;
+      text-align: center;
+      flex: 1;
+    }
+
+    .education-item {
+      margin-bottom: 50px;
+    }
+
+    .degree {
+      font-weight: bold;
+      color: #8B0000;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .university {
+      font-size: 1.05rem;
+      color: #444;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #8B0000;
+      color: white;
+      text-align: center;
+      padding: 22px 20px;
+      font-size: 0.95rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-content i {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .footer-content a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-content a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-banner {
+        background-attachment: scroll;
+        padding: 100px 20px;
+      }
+      .hero-banner h1 {
+        font-size: 4rem;
+        letter-spacing: 8px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-banner h1 {
+        font-size: 3.2rem;
+        letter-spacing: 5px;
+      }
+      .education-container {
+        padding: 0 15px;
+      }
+      .degree {
+        font-size: 1.1rem;
+      }
+      .university {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .logo {
+        font-size: 1.3rem;
+      }
+      .search-icon {
+        font-size: 1.1rem;
+      }
+      .hero-banner {
+        padding: 80px 15px;
+      }
+      .hero-banner h1 {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Responsive Navbar -->
+  <header>
+    <nav>
+      <div class="logo">Aurpa</div>
+
+      <!-- Desktop Links -->
+       <div class="nav-links" id="navLinks">
+        <a href="index.html">Bio</a>
+        <a href="experiences.html">Experience</a>
+        <a href="education.html">Education</a>
+        <a href="research.html">Research Profile</a>
+        <a href="publication.html">Publications</a>
+        <a href="training.html">Research Training</a>
+        <a href="programming.html">Programming Skills</a>
+        <a href="language.html">Language Proficiency</a>
+      </div>
+
+      <!-- Search + Hamburger -->
+      <div class="search-icon">Search</div>
+      <div class="hamburger" id="hamburger">Menu</div>
+    </nav>
+  </header>
+
+  <!-- Hero Banner with Bookshelf Background -->
+  <section class="hero-banner">
+    <h1>EDUCATION</h1>
+  </section>
+
+  <!-- Education Content -->
+  <div class="education-container">
+
+    <!-- Degree 1 -->
+    <div class="education-item">
+      <div class="degree">MSc in Computer Science and Engineering</div>
+      <div class="university">Jahangirnagar University, Bangladesh</div>
+      <div class="university">May 2022 – August 2023</div>
+    </div>
+
+    <!-- Degree 2 -->
+    <div class="education-item">
+      <div class="degree">BSc in Computer Science and Engineering</div>
+      <div class="university">Jahangirnagar University, Bangladesh</div>
+      <div class="university">March 2017 – February 2022</div>
+    </div>
+
+    <!-- Degree 3 -->
+    <div class="education-item">
+      <div class="degree">Higher Secondary Certificate</div>
+      <div class="university">Dhaka City College</div>
+      <div class="university">Graduated July 2016</div>
+    </div>
+
+    <!-- Degree 4 -->
+    <div class="education-item">
+      <div class="degree">Secondary School Certificate</div>
+      <div class="university">Monipur High School and College</div>
+      <div class="university">Graduated May 2014</div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <i class="fas fa-envelope"></i>
+      <span>Email: 
+        <a href="mailto:aurpa0001@uftb.ac.bd">aurpa0001@uftb.ac.bd</a>, 
+        <a href="mailto:tanjimaurpa@gmail.com">tanjimaurpa@gmail.com</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Search click
+    document.querySelector('.search-icon').addEventListener('click', () => {
+      alert('Search feature coming soon!');
+    });
+  </script>
+
+</body>
+</html>

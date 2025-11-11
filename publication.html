@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Publications - Tanjim Taharat Aurpa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #333;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background-color: #8B0000;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.98rem;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.8;
+    }
+
+    .search-icon {
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Hamburger Menu (Mobile) */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Mobile Menu */
+    @media (max-width: 992px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #8B0000;
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active {
+        max-height: 500px;
+        padding: 15px 0;
+      }
+
+      .nav-links a {
+        padding: 12px 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      nav {
+        padding: 15px 20px;
+      }
+    }
+
+    /* Hero Banner - PUBLICATIONS */
+    .hero-banner {
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('https://img.freepik.com/premium-photo/neon-blue-abstract-gold-sparkles-bokeh-background_205739-2598.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      text-align: center;
+      padding: 120px 20px;
+      margin-bottom: 60px;
+    }
+
+    .hero-banner h1 {
+      font-size: 5.2rem;
+      font-weight: 900;
+      letter-spacing: 10px;
+      text-shadow: 4px 4px 15px rgba(0,0,0,0.8);
+      margin: 0;
+    }
+
+    /* Main Content */
+    main {
+      flex: 1;
+    }
+
+    /* Publications Container */
+    .publications-container {
+      max-width: 1000px;
+      margin: 0 auto 100px;
+      padding: 0 20px;
+    }
+
+    /* Section Title with Toggle */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #ddd;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #8B0000;
+    }
+
+    .toggle-icon {
+      font-size: 1.2rem;
+      color: #8B0000;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-icon.open {
+      transform: rotate(180deg);
+    }
+
+    /* Content */
+    .section-content {
+      padding: 20px 0 30px;
+      display: none;
+      line-height: 1.9;
+      font-size: 1rem;
+      color: #444;
+    }
+
+    .section-content.show {
+      display: block;
+    }
+
+    .pub-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .pub-item {
+      margin-bottom: 20px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .pub-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #8B0000;
+      font-weight: bold;
+    }
+
+    .pub-item a {
+      color: #8B0000;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+
+    .pub-item a:hover {
+      color: #5D001E;
+    }
+
+    .pub-item strong {
+      color: #333;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #8B0000;
+      color: white;
+      text-align: center;
+      padding: 22px 20px;
+      font-size: 0.95rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-content i {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .footer-content a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-content a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-banner {
+        background-attachment: scroll;
+        padding: 100px 20px;
+      }
+      .hero-banner h1 {
+        font-size: 3.8rem;
+        letter-spacing: 6px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-banner h1 {
+        font-size: 3rem;
+        letter-spacing: 4px;
+      }
+      .publications-container {
+        padding: 0 15px;
+      }
+      .section-title {
+        font-size: 1.35rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .logo {
+        font-size: 1.3rem;
+      }
+      .search-icon {
+        font-size: 1.1rem;
+      }
+      .hero-banner {
+        padding: 80px 15px;
+      }
+      .hero-banner h1 {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Responsive Navbar -->
+  <header>
+    <nav>
+      <div class="logo">Aurpa</div>
+
+      <!-- Desktop Links -->
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Bio</a>
+        <a href="experiences.html">Experience</a>
+        <a href="education.html">Education</a>
+        <a href="research.html">Research Profile</a>
+        <a href="publication.html">Publications</a>
+        <a href="training.html">Research Training</a>
+        <a href="programming.html">Programming Skills</a>
+        <a href="language.html">Language Proficiency</a>
+      </div>
+
+      <!-- Search + Hamburger -->
+      <div class="search-icon">Search</div>
+      <div class="hamburger" id="hamburger">Menu</div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <h1>PUBLICATIONS</h1>
+    </section>
+
+    <!-- Publications Content -->
+    <div class="publications-container">
+
+      <!-- Journal Papers -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Journal Papers</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="section-content">
+          <ul class="pub-list">
+            <li class="pub-item">
+              <strong>Tanjim Taharat Aurpa*</strong>, Kazi Noshin Fariha, Kawser Hossain, Samiha Maisha Jeba, Md Shoaih Ahmed, Md Rawnak Saif Adib, Farhana Islam, Farzana Akter. Deep Transformer-based Architecture for the Recognition of Mathematical Equations from real-world Math Problems in Heliyon (JournalRank: Q1). <a href="https://doi.org/10.1016/j.heliyon.2024.e39089" target="_blank">https://doi.org/10.1016/j.heliyon.2024.e39089</a>
+            </li>
+            <li class="pub-item">
+              <strong>Tanjim Taharat Aurpa*</strong>, Md Shoaih Ahmed, Md Mahbubur Rahman, Md Golam Moazzam. InstructNet: A Novel Approach for Multi-Label Instruction Classification through Advanced Deep Learning in Plos One (JournalRank: Q1), 2024. <a href="https://doi.org/10.1371/journal.pone.0311161" target="_blank">https://doi.org/10.1371/journal.pone.0311161</a>
+            </li>
+            <li class="pub-item">
+              Samiha Maisha Jeba, <strong>Tanjim Taharat Aurpa*</strong>, Md Rawnak Saif Adib. From facebook posts to news headlines: using transformer models to predict post-disaster impact on mass media content. in Social Network Analysis and Mining (JournalRank: Q1), 2024. <a href="https://link.springer.com/article/10.1007/s13278-024-01363-1" target="_blank">https://link.springer.com/article/10.1007/s13278-024-01363-1</a>
+            </li>
+            <li class="pub-item">
+              <strong>Tanjim Taharat Aurpa*</strong>, Kazi Noshin Fariha, Kawser Hossain. Shomikoron: Dataset to discover equations from Bangla Mathematical text in Data in Brief (JournalRank: Q3), 2024. <a href="https://doi.org/10.1016/j.dib.2024.110742" target="_blank">https://doi.org/10.1016/j.dib.2024.110742</a>
+            </li>
+            <li class="pub-item">
+              <strong>Tanjim Taharat Aurpa*</strong>, Md Shoaih Ahmed. An ensemble novel architecture for Bangla Mathematical Entity Recognition (MER) using transformer based learning in Heliyon (JournalRank: Q1), Volume 10 , Issue 3,2024. <a href="https://doi.org/10.1016/j.heliyon.2024.e25467" target="_blank">https://doi.org/10.1016/j.heliyon.2024.e25467</a>
+            </li>
+            <li class="pub-item">
+              <strong>Tanjim Taharat Aurpa*</strong>, Samiha Maisha Jeba, Md Shoaih Ahmed, Mohammad Aman Ullah, Maria Mehzabin, Md Musfique Anwar. Bangla_MER: A Unique Dataset for Bangla Mathematical Entity Recognition in Data in Brief (JournalRank: Q3), 2024. <a href="https://doi.org/10.1016/j.dib.2024.110407" target="_blank">https://doi.org/10.1016/j.dib.2024.110407</a>
+            </li>
+            <li class="pub-item">
+              <strong>Tanjim Taharat Aurpa*</strong>, Richita Rifat Khandakar, Md Shoaih Ahmed, Md Musfique Anwar, A. B. M. Shawkat Ali. Reading Comprehension Based Question Answering System in Bangla Language with Transformer-Based Learning. Heliyon (JournalRank: Q1) <a href="https://doi.org/10.1016/j.heliyon.2022.e11052" target="_blank">https://doi.org/10.1016/j.heliyon.2022.e11052</a>
+            </li>
+            <li class="pub-item">
+              Md Shoaih Ahmed, <strong>Tanjim Taharat Aurpa</strong>, Md. Abul Kalam Azad. Fish Disease Detection Using Image Based Machine Learning Technique. Journal of King Saud University - Computer and Information Sciences. (Journal Rank: Q1, IF -13.473). Dec2020, DOI: 10.1016/j.jksuci.2021.05.003.
+            </li>
+            <li class="pub-item">
+              Md Shoaih Ahmed, <strong>Tanjim Taharat Aurpa</strong>, Md Musfique Anwar. Detecting Sentiment Dynamics and Clusters of Twitter Users for Trending Topics in COVID-19 Pandemic. PLOS One ( Journal Rank: Q1, IF -2.74). Jan2021, DOI: <a href="https://doi.org/10.1371/journal.pone.0253300" target="_blank">https://doi.org/10.1371/journal.pone.0253300</a>
+            </li>
+            <li class="pub-item">
+              <strong>Tanjim Taharat Aurpa</strong>, Rifat Sadik, Md Shoaib Ahmed. Abusive Bangla Comments Detection on Facebook using Transformer Based Deep Learning Models. Social Network Analysis and Mining. (JournalRank: Q1) <a href="https://link.springer.com/article/10.1007%2Fs13278-021-00852-x" target="_blank">https://link.springer.com/article/10.1007%2Fs13278-021-00852-x</a>
+            </li>
+            <li class="pub-item">
+              <strong>Tanjim Taharat Aurpa*</strong>, Md Shoaib Ahmed, Richita Rifat Khandakar, Md Musfique Anwar, A. B. M. Shawkat Ali. UDDIPOK: A Reading Comprehension Based Question Answering Dataset in Bangla Language. <strong>Data In Brief (JournalRank: Q2)</strong> DOI: <a href="https://doi.org/10.1016/j.dib.2023.108933" target="_blank">https://doi.org/10.1016/j.dib.2023.108933</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Conference Papers -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Conference Papers</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="section-content">
+          <ul class="pub-list">
+            <li class="pub-item">
+              Md Samiul Alom, Samiha Maisha Jeba, Angkon Debnath, <strong>Tanjim Taharat Aurpa</strong>, Rifat Siddiqua. Enhancing Sleep Disorder Diagnosis with a Machine Learning Approach Using Ensemble Neural Networks in <strong>11th International Conference on Networking, Systems and Security. 2024</strong>
+            </li>
+            <li class="pub-item">
+              Samiha Maisha Jeba, Rajib Khan, Md Shoaib Ahmed, <strong>Tanjim Taharat Aurpa</strong>, Satya Ranjan Dash. Sentiment Analysis on the Elevated Expressway in Bangladesh: A Machine Learning and Deep Learning Approach in <strong>2024 IEEE International Conference on Power, Electrical, Electronics and Industrial Applications.</strong>
+            </li>
+            <li class="pub-item">
+              Samiha Maisha Jeba, <strong>Tanjim Taharat Aurpa</strong>, Md Samiul Alom, Md Wadud Mahmud Joy, Asm Shakil Ahamed, Satya Ranjan Dash, Md Shoaib Ahmed. Recognition of Data Breach Method from Story Using Advanced Deep Learning in <strong>3rd INTERNATIONAL CONFERENCE ON INNOVATION IN TECHNOLOGY, 2024</strong>. <a href="https://ieeexplore.ieee.org/abstract/document/10512191/" target="_blank">https://ieeexplore.ieee.org/abstract/document/10512191/</a>(Indexed by Scopus)
+            </li>
+            <li class="pub-item">
+              Samiha Maisha Jeba, <strong>Tanjim Taharat Aurpa</strong>, Farshid Hossain Siyam, Rajib Khan, Faniyam Maria Mansia. Analysis of Public Sentiment on Dhaka Metro Rail with Transformer Based Architectures in <strong>26th International Conference on Computer and Information Technology (ICCIT), 2024</strong>. <a href="https://ieeexplore.ieee.org/abstract/document/10441469" target="_blank">https://ieeexplore.ieee.org/abstract/document/10441469</a> (Indexed by Scopus)
+            </li>
+            <li class="pub-item">
+              <strong>Tanjim Taharat Aurpa</strong>, Samiha Maisha Jeba, Shoaib Ullah Rasel. Ensemble Methods of Machine Learning Algorithms for Early Diabetic Detection in Comparison. <strong>2023 1st International Conference on Circuits, Power and Intelligent Systems (CCPIS)</strong>. Doi: <a href="https://doi.org/10.1109/CCPIS59145.2023.10291566" target="_blank">https://doi.org/10.1109/CCPIS59145.2023.10291566</a> (Indexed by Scopus)
+            </li>
+            <li class="pub-item">
+              Fairuz Tanzim Achal, Mosammad Suraiya Ahmmed, <strong>Tanjim Taharat Aurpa</strong> Severity Detection of Problematic Smartphone Usage (PSU) and its Effect on Human Lifestyle using Machine Learning. <strong>2023 IEEE 8th International Conference for Convergence in Technology (I2CT)</strong>. (Indexed by Scopus)
+            </li>
+            <li class="pub-item">
+              <strong>Tanjim Taharat Aurpa</strong>, Md Shoaib Ahmed, Rifat Sadik, Sabbir Anwar, Md Abdul Mazid Adnan and Md Musfique Anwar. Progressive Guidance Categorization Using Transformer-Based Deep Neural Network Architecture. Accepted to the <strong>21st International Conference on Hybrid Intelligent Systems (HIS 2021)</strong> (Conference Rank: C). (Indexed by Scopus)
+            </li>
+            <li class="pub-item">
+              Md Shoaib Ahmed, <strong>Tanjim Taharat Aurpa</strong>, Md Musfique Anwar. Online Topical Clusters Detection for Top-k Trending Topics in Twitter. <strong>IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining (ASONAM2020)</strong>. (Conference Rank: B4) Oct2020. (Indexed by Scopus)
+              <a href="https://ieeexplore.ieee.org/document/9381305" target="_blank">https://ieeexplore.ieee.org/document/9381305</a>
+            </li>
+            <li class="pub-item">
+              Md Shoaib Ahmed, <strong>Tanjim Taharat Aurpa</strong>, Md Musfique Anwar. Query Oriented Topical Clusters Detection for Top-k Trending Topics in Twitter. <strong>IEEE Region 10 Humanitarian Technology Conference (R10HTC2020)</strong>. (Indexed by Scopus)
+              <a href="https://ieeexplore.ieee.org/document/9357047" target="_blank">https://ieeexplore.ieee.org/document/9357047</a>
+            </li>
+            <li class="pub-item">
+              <strong>Tanjim Taharat Aurpa</strong>, Fatema Khan and Md. Musfique Anwar. Discovering and Tracking Query Oriented Topical Clusters in OnlineSocial Networks. Accepted to <strong>IEEE Region 10 Symposium (TENSYMP) 2020</strong>, 5-7 June, 2020, Dhaka, Bangladesh. (Best Paper Award) (Indexed by Scopus)
+              <a href="https://ieeexplore.ieee.org/document/9230994" target="_blank">https://ieeexplore.ieee.org/document/9230994</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Supervised Projects -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Supervised Projects</h2>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div class="section-content">
+          <ul class="pub-list">
+            <li class="pub-item">Context Based Question Answering System</li>
+            <li class="pub-item">Multiple Choice Question Answering in Bangla Language</li>
+            <li class="pub-item">Aspect-based Sentiment Analysis on Ukraine-Russia War</li>
+            <li class="pub-item">Bangla Mathematical Entity Recognition</li>
+            <li class="pub-item">Transformer-based Learning for Natural Language Processing</li>
+            <li class="pub-item">Deep Learning Approaches for Social Media Analysis</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <i class="fas fa-envelope"></i>
+      <span>Email: 
+        <a href="mailto:aurpa0001@uftb.ac.bd">aurpa0001@uftb.ac.bd</a>, 
+        <a href="mailto:tanjimaurpa@gmail.com">tanjimaurpa@gmail.com</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle Sections
+    document.querySelectorAll('.section-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const icon = header.querySelector('.toggle-icon');
+
+        content.classList.toggle('show');
+        icon.classList.toggle('open');
+      });
+    });
+
+    // Hamburger Menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Search
+    document.querySelector('.search-icon').addEventListener('click', () => {
+      alert('Search feature coming soon!');
+    });
+  </script>
+
+</body>
+</html>

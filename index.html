@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tanjim Taharat Aurpa</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #333;
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background-color: #8B0000;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.98rem;
+      transition: opacity 0.3s;
+    }
+
+    .nav-links a:hover {
+      opacity: 0.8;
+    }
+
+    .search-icon {
+      font-size: 1.3rem;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Hamburger Menu (Mobile) */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* Mobile Menu */
+    @media (max-width: 992px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #8B0000;
+        flex-direction: column;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active {
+        max-height: 500px;
+        padding: 15px 0;
+      }
+
+      .nav-links a {
+        padding: 12px 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+
+      nav {
+        padding: 15px 20px;
+      }
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
+      flex: 1; /* This makes the container grow to fill available space */
+    }
+
+    /* Profile: Image LEFT, Text RIGHT */
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 165px;
+      margin-bottom: 0px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .profile-img {
+      width: 205px;
+      height: 200px;
+      border-radius: 8px;
+      object-fit: contain;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+      border: 1px solid #ddd;
+      flex-shrink: 0;
+      background-color: #f9f9f9;
+    }
+
+    .name-title {
+      text-align: center;
+      max-width: 600px;
+      font-family: 'Roboto Serif', Arial;
+    }
+
+    .name-title h1 {
+      font-size: 2.35rem;
+      color: #980000;
+      margin-bottom: 6px;
+      font-weight: bold;
+      letter-spacing: 0.3px;
+    }
+
+    .name-title p {
+      font-size: 1.08rem;
+      color: #444;
+      margin: 3px 0;
+      color: #980000;
+      font-weight: 400;
+    }
+
+    .university {
+      color: #980000;
+      font-weight: bold;
+      font-size: 1.12rem;
+    }
+
+    /* Buttons and Social Icons Container */
+    .buttons-social-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 35px 0 50px;
+      flex-wrap: wrap;
+      gap: 20px;
+      position: relative;
+      min-height: 80px; /* Prevent container collapse */
+    }
+
+    /* Profile Buttons - Positioned between left and middle */
+    .profile-buttons {
+      display: flex;
+      gap: 25px;
+      position: absolute;
+      left: 20%; /* Position between left and middle */
+      transform: translateX(-50%);
+    }
+
+    .profile-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #7CA7D11C;
+      color: #8B0000;
+      border: 2px solid #F196ED;
+      border-radius: 70px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: -4px 0px 10px 0px rgba(0, 0, 0, 0.5);
+      transition: background-color 0.3s, transform 0.2s, border-color 0.3s, color 0.3s;
+    }
+
+    .profile-btn:hover {
+      border-color: yellow;
+      color: green;
+      transform: translateY(-2px);
+    }
+
+    .profile-btn.secondary {
+      background-color: #7CA7D11C;
+      color: #8B0000;
+      border: 2px solid #F196ED;
+    }
+
+    .profile-btn.secondary:hover {
+      border-color: yellow;
+      color: green;
+      transform: translateY(-2px);
+    }
+
+    /* Social Icons - Positioned between middle and right */
+    .social-icons {
+      display: flex;
+      gap: 34px;
+      position: absolute;
+      right: 22%; /* Position between middle and right */
+      transform: translateX(50%);
+    }
+
+    .social-icons img {
+      width: 40px;
+      height: 40px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.15);
+    }
+
+    /* Bio - JUSTIFIED TEXT */
+    .bio {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 10px;
+    }
+
+    .bio p {
+      text-align: justify;
+      margin-bottom: 24px;
+      font-size: 1.06rem;
+      color: #333;
+      line-height: 1.85;
+    }
+
+    .bio strong {
+      color: #000;
+      font-weight: 600;
+    }
+
+    /* Fullscreen Popup */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .popup-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup-container {
+      position: relative;
+      width: 95%;
+      height: 95%;
+      background-color: #151f28;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .popup-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 2001;
+      transition: background-color 0.3s;
+    }
+
+    .popup-close:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .popup-close i {
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    /* Footer - Always at bottom */
+    footer {
+      background-color: #8B0000;
+      color: white;
+      text-align: center;
+      padding: 22px 20px;
+      margin-top: auto; /* This pushes footer to bottom */
+      font-size: 0.95rem;
+      width: 100%;
+    }
+
+    .footer-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-content i {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .footer-content a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .footer-content a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .profile {
+        flex-direction: column;
+        text-align: center;
+      }
+      .name-title {
+        text-align: center;
+      }
+      .profile-img {
+        width: 150px;
+        height: 150px;
+      }
+      .name-title h1 {
+        font-size: 2rem;
+      }
+      .bio p {
+        font-size: 1rem;
+        padding: 0 15px;
+      }
+      .buttons-social-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        height: auto;
+        position: static;
+      }
+      .profile-buttons {
+        position: static;
+        transform: none;
+        flex-direction: column;
+        align-items: center;
+      }
+      .social-icons {
+        position: static;
+        transform: none;
+        gap: 30px;
+      }
+      .profile-btn {
+        width: 200px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .logo {
+        font-size: 1.3rem;
+      }
+      .search-icon {
+        font-size: 1.1rem;
+      }
+      .container {
+        margin: 30px auto;
+      }
+      .social-icons {
+        gap: 20px;
+      }
+      .social-icons img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Responsive Navbar -->
+  <header>
+    <nav>
+      <div class="logo">Aurpa</div>
+
+      <!-- Desktop Links -->
+     <div class="nav-links" id="navLinks">
+        <a href="index.html">Bio</a>
+        <a href="experiences.html">Experience</a>
+        <a href="education.html">Education</a>
+        <a href="research.html">Research Profile</a>
+        <a href="publication.html">Publications</a>
+        <a href="training.html">Research Training</a>
+        <a href="programming.html">Programming Skills</a>
+        <a href="language.html">Language Proficiency</a>
+      </div>
+
+      <!-- Search + Hamburger -->
+      <div class="search-icon">Search</div>
+      <div class="hamburger" id="hamburger">Menu</div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+
+    <!-- Profile: Image LEFT, Text RIGHT -->
+    <div class="profile">
+      <div>
+        <img src="mam.jpg" alt="Tanjim Taharat Aurpa" class="profile-img" />
+        
+      </div>
+      
+      <div class="name-title">
+        <h1>Tanjim Taharat Aurpa</h1>
+        <p>Lecturer & Chairman Department of Data Science and Engineering</p>
+        <h5 class="university">University of Frontier Technology, Bangladesh</h5>
+      </div>
+    </div>
+
+    <!-- Buttons and Social Icons Container -->
+    <div class="buttons-social-container">
+      <!-- Buttons positioned between left and middle -->
+      <div class="profile-buttons">
+        <a href="aurpa_CV.pdf" class="profile-btn" target="_blank">Download CV</a>
+        <button class="profile-btn secondary" id="viewPortfolioBtn">View 3D Portfolio</button>
+      </div>
+      
+      <!-- Social Icons positioned between middle and right -->
+      <div class="social-icons">
+        <a href="https://dse.uftb.ac.bd/profile/Aurpa" title="UFTB" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-hxh55KNKGR9RdB-9UMondnOVJkBarD1J6g&s" alt="ORCID"/></a>
+        <a href="https://orcid.org/0000-0003-1471-1316" title="ORCID" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/ORCID_iD.svg/1024px-ORCID_iD.svg.png" alt="ORCID"/></a>
+        <a href="https://www.researchgate.net/profile/Tanjim-Taharat-Aurpa-2" title="ResearchGate" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/ResearchGate_icon_SVG.svg/768px-ResearchGate_icon_SVG.svg.png" alt="ResearchGate"/></a>
+        <a href="https://scholar.google.com/citations?user=L2OPFJgAAAAJ&hl=en" title="Google Scholar" target="_blank"><img src="https://images.icon-icons.com/2108/PNG/512/google_scholar_icon_130918.png" alt="Google Scholar"/></a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=57219985696" title="Scopus" target="_blank"><img src="https://img.icons8.com/color/48/scopus.png" alt="Scopus"/></a>
+      </div>
+    </div>
+
+    <!-- Bio with JUSTIFIED text -->
+   <div class="bio">
+      <p>
+        I serve as the <strong>founding Lecturer and Chairperson</strong> of the <strong>Department of Data Science and Engineering</strong> at the 
+        <strong>University of Frontier Technology, Bangladesh</strong>. My deep passion for research and teaching, 
+        with a concentration on <strong>Natural Language Processing (NLP), Data Science, and Deep Learning</strong>, 
+        has driven me to pursue this career. I maintain a strong research profile, with over <strong>20 publications</strong> in reputable journals and conferences, and have been honored  with consecutive <strong>University Grants Commission (UGC) research grants</strong>.
+      </p>
+      <p>
+        In addition to my instructional and leadership roles, I am dedicated to mentoring undergraduate students in their research projects and theses, contributing to their academic          growth and practical skill development. My experience as the founding chairperson has equipped me with strong capabilities in academic administration, program development, and fostering a collaborative learning environment.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Fullscreen Popup for 3D Portfolio -->
+  <div class="popup-overlay" id="portfolioPopup">
+    <div class="popup-container">
+      <div class="popup-close" id="closePopup">
+        <i class="fas fa-times"></i>
+      </div>
+      <iframe src="pdf_view.html" class="popup-iframe" id="portfolioIframe"></iframe>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <i class="fas fa-envelope"></i>
+      <span>Email: 
+        <a href="mailto:aurpa0001@uftb.ac.bd">aurpa0001@uftb.ac.bd</a>, 
+        <a href="mailto:tanjimaurpa@gmail.com">tanjimaurpa@gmail.com</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Search click
+    document.querySelector('.search-icon').addEventListener('click', () => {
+      alert('Search feature coming soon!');
+    });
+
+    // Portfolio Popup Functionality
+    const viewPortfolioBtn = document.getElementById('viewPortfolioBtn');
+    const portfolioPopup = document.getElementById('portfolioPopup');
+    const closePopup = document.getElementById('closePopup');
+    const portfolioIframe = document.getElementById('portfolioIframe');
+
+    // Open popup
+    viewPortfolioBtn.addEventListener('click', () => {
+      portfolioPopup.classList.add('active');
+      document.body.style.overflow = 'hidden'; // Prevent scrolling on main page
+    });
+
+    // Close popup
+    closePopup.addEventListener('click', () => {
+      portfolioPopup.classList.remove('active');
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    });
+
+    // Close popup when clicking outside the iframe
+    portfolioPopup.addEventListener('click', (e) => {
+      if (e.target === portfolioPopup) {
+        portfolioPopup.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Close popup with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && portfolioPopup.classList.contains('active')) {
+        portfolioPopup.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
+
+</body>
+</html>

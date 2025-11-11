@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tanjim Taharat Aurpa - 3D Portfolio Book</title>
+    <!-- BoxIcon -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <style>
+      *{
+          margin: 0;
+          padding: 0;
+          text-decoration: none;
+          box-sizing: border-box;
+          border: none;
+          outline: none;
+      }
+      :root {
+          --bg-color: #151f28;
+          --main-color: #00abf0;
+          --text-color: #333;
+          --second-text-color: #555;
+          --white-color:#fff;
+          --cover-color:linear-gradient(45deg, #00abf0, #006e9a);
+          --pages-color:linear-gradient(90deg, #fff, #ddd);
+          --border: 0.125rem solid #00abf0;
+          --box-shadow: 0 0 0.8rem rgba(0,0,0,0.2);
+
+      }
+      body{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh; 
+          background-color: var(--bg-color);
+          color: var(--text-color);
+          overflow: hidden;
+          font-family: "Nunito", sans-serif;
+      }
+      .wrapper{
+          position: relative;
+          width: 66rem;
+          height: 45rem;
+          padding: 2rem;
+          perspective: 250rem;
+          animation: show-animate 2s forwards;
+      }
+      @keyframes show-animate {
+          0%,
+          30% {
+              opacity: 0;
+              transform: rotate(-20deg);
+          }
+          100% {
+              opacity: 1;
+              transform: rotate(0deg);
+          }
+      }
+      .cover {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 50%;
+          height: 100%;
+          background-color: var(--cover-color);
+          background-color: #029bca;
+          box-shadow: var(--box-shadow);
+          border-top-left-radius: 0.6rem;
+          border-bottom-left-radius: 0.6rem;
+          transform-origin: right;
+      }
+      .cover.cover-left{
+          z-index: -1;
+      }
+      .cover.cover-right{
+          z-index: 100;
+          transition: transform 1s cubic-bezier(.645, .045, .355, 1);
+
+      }
+      .cover.cover-right.turn {
+          transform: rotateY(180deg);
+      }
+      .book {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          perspective: 250rem;
+      }
+      .book .book-page {
+          position: absolute;
+          width: 50%;
+          height: 100%;
+          background: var(--pages-color);
+          box-shadow: 0 0 .6rem rgba(0,0,0,0.1);
+          display: flex;
+          padding: 2rem;
+      }
+      .book-page.page-left{
+          box-shadow: -.6rem .6rem .6rem rgba(0,0,0,0.1);
+      }
+      .profile-page{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+      }
+      .profile-page img{
+           max-width: 180px;
+           border-radius: 50%;
+           border: 0.25rem solid var(--main-color);
+           margin-bottom: .8rem;
+      }
+      .profile-page h1 {
+          font-size: 2.7rem;
+          line-height: 1;
+      }
+      .profile-page h3{
+          color: var(--main-color);
+          font-size: 1.5rem;
+      }
+      .profile-page .social-media {
+          margin: .6rem .8rem;
+      }
+      .profile-page .social-media a{
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 2.5rem;
+          height: 2.5rem;
+          background: transparent;
+          border: var(--border);
+          border-radius: 50%;
+          font-size: 1.3rem;
+          color: var(--main-color);
+          margin: 0 .2rem;
+          transition: .5s;
+
+      }
+      .profile-page .social-media a:hover{
+          background-color: var(--main-color);
+          color: var(--white-color);
+      }
+      .profile-page p {
+          text-align: justify;
+          font-size: 1.1rem;
+      }
+      .profile-page .btn-box{
+          margin-top: 1.2rem;
+      }
+      .btn {
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          width: 9.5rem;
+          height: 3rem;
+          background: var(--main-color);
+          border: var(--border) ;
+          border-radius: .3rem;
+          font-size: 1rem;
+          color: var( --white-color);
+          font-weight: 500;
+          margin: 0 1rem;
+          transition: .5s;
+      }
+      .btn-box .btn:nth-child(2){
+          background: transparent;
+          color: var(--main-color);
+      }
+      .btn-box .btn:nth-child(1):hover{
+          background: transparent;
+          color: var(--main-color);
+      }
+      .btn-box .btn:nth-child(2):hover{
+          background: var(--main-color);
+          color: var(--white-color);
+      }
+
+      /* right page */
+      .book-page.page-right{
+          position: absolute;
+          right: 0;
+          transform-style: preserve-3d;
+          transform-origin: left;
+          transition: transform 1s cubic-bezier(.645, .045, .355, 1);
+      }
+      .book-page.page-right.turn{
+          transform: rotateY(-180deg);
+      }
+
+      .book-page .page-front,
+      .book-page .page-back{
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: var(--pages-color);
+          padding: 1.5rem 2rem;
+      }
+      .book-page .page-front{
+          transform: rotateY(0deg) translateZ(1px);
+      }
+      .book-page .page-back{
+          transform: rotateY(180deg) translateZ(1px);
+      }
+
+      .title {
+          text-align: center;
+      }
+      .workeduc-box {
+          border-left: var(--border);
+          margin-top: 2rem;
+          max-height: 30rem;
+          overflow-y: auto;
+          padding-right: 0.5rem;
+      }
+      
+      .workeduc-box::-webkit-scrollbar {
+          width: 5px;
+      }
+      
+      .workeduc-box::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 5px;
+      }
+      
+      .workeduc-box::-webkit-scrollbar-thumb {
+          background: var(--main-color);
+          border-radius: 5px;
+      }
+      
+      .workeduc-box .workeduc-content {
+          position: relative;
+          padding-left: 1.6rem;
+          padding-bottom: 1.2rem;
+      }
+      .workeduc-box .workeduc-content::before{
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -0.65rem;
+          width: 1.2rem;
+          height: 1.2rem;
+          border-radius: 50%;
+          background: var(--main-color);
+      }
+      .workeduc-content .year {
+          color: var(--main-color);
+          font-size: 1.2rem;
+      }
+      .workeduc-content h3{
+          font-size: 1.4rem;
+          margin: .3rem 0;
+      }
+      .workeduc-content p{
+          font-size: 1.15rem;
+          text-align: justify ;
+      }
+      .workeduc-content .year i {
+          margin-right: .4rem;
+          font-size: 1.2rem;
+      }
+      .number-page{
+          position: absolute;
+          bottom: 1rem;
+          left: 50%;
+          transform: translateX(-50%);
+          font-weight: 600;
+      }
+
+      /* next button */
+      .nextprev-btn{
+          position: absolute;
+          bottom: .9rem;
+          right: 1.5rem;
+          width: 2rem;
+          height: 2rem;
+          cursor: pointer;
+          font-size: 2rem;
+          color: var(--second-text-color);
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          transition: .5s;
+      }
+      .nextprev-btn:hover{
+          color: var(--main-color);
+      }
+      .nextprev-btn.back{
+          left: 1.5rem;
+      }
+
+      /* my services */
+      .services-box{
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1.5rem;
+          margin-top: 2rem;
+      }
+      .services-box .services-content{
+          flex: 1 1 10rem ;
+          border: var(--border);
+          border-radius: .5rem;
+          padding: .8rem .5rem 1.1rem;
+          text-align: center;
+          transition: .3s ease;
+      }
+      .services-box .services-content:hover{
+          box-shadow: var(--box-shadow);
+      }
+      .services-content i{
+          font-size: 2.5rem;
+          color: var(--main-color);
+      }
+      .services-content h3{
+          font-size: 1.1rem;
+      }
+      .services-content p {
+          margin: .2rem 0 .8rem;
+      }
+      .services-content .btn {
+          width: 8rem;
+          height: 2.5rem;
+      }
+      .services-content .btn:hover{
+          background-color: transparent;
+          color: var(--main-color);
+      }
+
+
+      /* skilss box */
+      .skills-box{
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1.5rem;
+          margin-top: 2rem;
+
+      }
+      .skills-box .skills-content{
+          flex: 1 1 20rem;
+      }
+      .skills-content h3{
+          font-size: 1.3rem;
+          line-height: 1;
+          margin-bottom: .6rem;
+      }
+      .skills-content .content{
+          display: flex;
+          flex-wrap: wrap;
+          gap: .8rem;
+      }
+      .skills-content .content span{
+          display: inline-flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 6rem;
+          height: 5rem;
+          border: var(--border);
+          border-radius: .3rem;
+          font-weight: 600;
+          transition: .3 ease;
+      }
+      .skills-content .content span:hover{
+          box-shadow: var(--box-shadow);
+      }
+      .skills-content .content span i{
+          color: var(--main-color);
+          font-size: 3rem;
+      }
+      .page-left h1{
+        font-size: 2.35rem;
+       }
+
+      /* portfolio */
+      .portfolio-box{
+          margin-top: 2rem;
+
+      }
+      .portfolio-box .img-box{
+          display: flex;
+          width: 100%;
+          height: 15rem;
+          border-radius: .5rem;
+          border: var(--border);
+          overflow: hidden;
+      }
+      .portfolio-box .img-box img{
+          width: 100%;
+          object-fit: cover;
+          transition: .5s ease;
+      }
+      .portfolio-box .img-box:hover img{
+          transform: scale(1.1);
+      }
+      .portfolio-box .info-box{
+          margin: 1rem 0 1.5rem;
+      }
+      .portfolio-box .info-box .info-title{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+      }
+      .portfolio-box .info-box .info-title h3{
+          font-size: 1.3rem;
+      }
+      .portfolio-box .info-box .info-title a{
+          display: flex;
+          align-items: center;
+          color: var(--main-color);
+      }
+      .portfolio-box .info-box .info-title a i{
+          margin-left: .3rem;
+      }
+      .portfolio-box .info-box p:nth-of-type(1){
+          font-weight: 600;
+      }
+      .portfolio-box .info-box p{
+          text-align: justify;
+      }
+      .portfolio-box .btn-box{
+          display: flex;
+          justify-content: center;
+      }
+      .portfolio-box .btn-box .btn{
+          margin: 0 1 .15rem;
+      }
+
+
+      /* Contact Me! */
+      .contact-box{
+          margin-top: 2rem;
+          text-align: center;
+      }
+      .contact-box .field{
+          width: 100%;
+          background-color: transparent;
+          border: var(--border);
+          border-radius: .3rem;
+          padding: .8rem;
+          font-size: 1rem;
+          color: var(--text-color);
+          margin-bottom: 1.5rem;
+      }
+
+      .contact-box .field::placeholder{
+          color: var(--text-color);
+      }
+      .contact-box textarea{
+          resize: none;
+          height: 15rem;
+      }
+      .contact-box .btn{
+          cursor: pointer;
+      }
+      .contact-box .btn:hover{
+          background-color: transparent;
+          color: var(--main-color);
+      }
+
+      .back-profile{
+          position: absolute;
+          bottom: 1.2rem;
+          right: 2rem;
+          width: 2rem;
+          height: 2rem;
+          background-color: transparent;
+          border: var(--border);
+          border-radius: .3rem;
+          font-size: 1.1rem;
+          color: var(--main-color);
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          transition: .5s;
+      }
+      .back-profile:hover{
+          background: var(--main-color);
+          color: var(--white-color);
+      }
+      .back-profile p{
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%) scale(.5);
+          font-size: 1rem;
+          opacity: 0;
+          transition: .5s;
+          color: var(--main-color);
+      }
+      .back-profile:hover p{
+          opacity: 1;
+          transform: translateX(-50%) scale(1);
+          top: -1.8rem;
+      }
+      
+      /* Publications styling */
+      .publications-box {
+          max-height: 30rem;
+          overflow-y: auto;
+          padding-right: 0.5rem;
+      }
+      
+      .publications-box::-webkit-scrollbar {
+          width: 5px;
+      }
+      
+      .publications-box::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 5px;
+      }
+      
+      .publications-box::-webkit-scrollbar-thumb {
+          background: var(--main-color);
+          border-radius: 5px;
+      }
+      
+      .publication-item {
+          margin-bottom: 1.5rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px dashed #ccc;
+      }
+      
+      .publication-item:last-child {
+          border-bottom: none;
+      }
+      
+      .publication-title {
+          font-weight: bold;
+          margin-bottom: 0.5rem;
+      }
+      
+      .publication-authors {
+          font-style: italic;
+          margin-bottom: 0.3rem;
+      }
+      
+      .publication-journal {
+          color: var(--main-color);
+          margin-bottom: 0.3rem;
+      }
+      
+      .publication-link {
+          color: var(--main-color);
+          text-decoration: underline;
+      }
+      
+      .achievement-item {
+          margin-bottom: 1rem;
+          padding-left: 1rem;
+      }
+      
+      .achievement-title {
+          font-weight: bold;
+      }
+      
+      /* Scrollable achievements section */
+      .achievements-box {
+          max-height: 30rem;
+          overflow-y: auto;
+          padding-right: 0.5rem;
+      }
+      
+      .achievements-box::-webkit-scrollbar {
+          width: 5px;
+      }
+      
+      .achievements-box::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 5px;
+      }
+      
+      .achievements-box::-webkit-scrollbar-thumb {
+          background: var(--main-color);
+          border-radius: 5px;
+      
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="cover cover-left"></div>
+      <div class="cover cover-right"></div>
+
+      <div class="book">
+        <!-- profile page -->
+        <div class="book-page page-left">
+          <div class="profile-page">
+            <img src="mam.jpg" alt="Tanjim Taharat Aurpa" />
+            <h1>Tanjim Taharat Aurpa</h1>
+            <h3>Academic & Researcher</h3>
+
+            <div class="social-media">
+              <a href="https://www.facebook.com/taharat.aurpa" target="_blank"><i class="bx bxl-facebook"></i></a>
+              <a href="https://twitter.com/Taharat_Aurpa" target="_blank"><i class="bx bxl-twitter"></i></a>
+              <a href="#" target="_blank"><i class="bx bxl-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/tanjim-taharat-aurpa" target="_blank"><i class="bx bxl-linkedin-square"></i></a>
+            </div>
+
+            <p>
+              As an accomplished academic with 3 years of teaching experience and a commendable research portfolio of 21 publications, including 11 journal articles and 8 Q1 papers, I am currently leading as the founding chairperson of the Department of Data Science and Engineering, UFTB. My research expertise lies in natural language processing and data science.
+            </p>
+
+            <div class="btn-box">
+              <a href="aurpa_CV.pdf" class="btn" target="_blank">Download CV</a>
+              <a href="#" class="btn contact-me">Contact Me!</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- page 1 & 2 -->
+        <div class="book-page page-right turn" id="turn-1">
+          <!-- page 1 (work experience) -->
+          <div class="page-front">
+            <h1 class="title">Work Experience</h1>
+
+            <div class="workeduc-box">
+              <div class="workeduc-content">
+                <span class="year"><i class="bx bxs-calendar"></i>March 2024 - Present</span>
+                <h3>Chairperson - Department of Data Science and Engineering</h3>
+                <p>University of Frontier Technology, Bangladesh</p>
+              </div>
+
+              <div class="workeduc-content">
+                <span class="year"><i class="bx bxs-calendar"></i>February 2024 - Present</span>
+                <h3>Lecturer - Department of Data Science and Engineering</h3>
+                <p>University of Frontier Technology, Bangladesh</p>
+              </div>
+
+              <div class="workeduc-content">
+                <span class="year"><i class="bx bxs-calendar"></i>August 2023 – February 2024</span>
+                <h3>Lecturer - Department of Educational Technology</h3>
+                <p>University of Frontier Technology, Bangladesh</p>
+              </div>
+              
+              <div class="workeduc-content">
+                <span class="year"><i class="bx bxs-calendar"></i>September 2022 – August 2023</span>
+                <h3>Lecturer</h3>
+                <p>International University of Business Agriculture and Technology</p>
+              </div>
+              
+              <!-- Additional content to demonstrate scrolling -->
+              <div class="workeduc-content">
+                <span class="year"><i class="bx bxs-calendar"></i>2020 - 2022</span>
+                <h3>Research Assistant</h3>
+                <p>Jahangirmagar University - Worked on various NLP research projects</p>
+              </div>
+              
+              <div class="workeduc-content">
+                <span class="year"><i class="bx bxs-calendar"></i>2019 - 2020</span>
+                <h3>Teaching Assistant</h3>
+                <p>Jahangirmagar University - Assisted in undergraduate computer science courses</p>
+              </div>
+              
+              <div class="workeduc-content">
+                <span class="year"><i class="bx bxs-calendar"></i>2018 - 2019</span>
+                <h3>Intern - Software Development</h3>
+                <p>Tech Solutions Ltd. - Developed web applications using modern frameworks</p>
+              </div>
+            </div>
+            <span class="number-page">1</span>
+
+            <!-- next button -->
+            <span class="nextprev-btn" data-page="turn-1">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+          </div>
+
+          <!-- page 2 (education) -->
+          <div class="page-back">
+            <h1 class="title">Education</h1>
+
+            <div class="workeduc-box">
+              <div class="workeduc-content">
+                <span class="year"><i class="bx bxs-calendar"></i>May 2022 – August 2023</span>
+                <h3>MSc in Computer Science and Engineering</h3>
+                <p>Jahangirmagar University</p>
+              </div>
+
+              <div class="workeduc-content">
+                <span class="year"><i class="bx bxs-calendar"></i>March 2017 – February 2022</span>
+                <h3>BSc in Computer Science and Engineering</h3>
+                <p>Jahangirmagar University</p>
+              </div>
+
+              <div class="workeduc-content">
+                <span class="year"><i class="bx bxs-calendar"></i>Graduated July 2016</span>
+                <h3>Higher Secondary Certificate</h3>
+                <p>Dhaka City College</p>
+              </div>
+              
+              <div class="workeduc-content">
+                <span class="year"><i class="bx bxs-calendar"></i>Graduated May 2014</span>
+                <h3>Secondary School Certificate</h3>
+                <p>Monipur High School and College</p>
+              </div>
+            </div>
+
+            <span class="number-page">2</span>
+
+            <!-- prev button -->
+            <span class="nextprev-btn back" data-page="turn-1">
+              <i class="bx bx-chevron-left"></i>
+            </span>
+          </div>
+        </div>
+
+
+        <!-- page 3 & 4 -->
+        <div class="book-page page-right turn" id="turn-2">
+          <!-- page 3 (my services) -->
+          <div class="page-front">
+            <h1 class="title">Research Publications</h1>
+
+            <div class="publications-box">
+              <div class="publication-item">
+                <div class="publication-title">Deep Transformer-based Architecture for the Recognition of Mathematical Equations from real-world Math Problems</div>
+                <div class="publication-authors">Tanjim Taharat Aurpa*, Kazi Noshin Fariha, Kawser Hossain, Samiha Maisha Jeba, Md Shoaih Ahmed, Md Rawnak Saif Adib, Farhana Islam, Farzana Akter</div>
+                <div class="publication-journal">Heliyon (JournalRank: Q1)</div>
+                <a href="https://doi.org/10.1016/j.heliyon.2024.e39089" class="publication-link" target="_blank">View Publication</a>
+              </div>
+              
+              <div class="publication-item">
+                <div class="publication-title">InstructNet: A Novel Approach for Multi-Label Instruction Classification through Advanced Deep Learning</div>
+                <div class="publication-authors">Tanjim Taharat Aurpa*, Md Shoaih Ahmed, Md Mahbubur Rahman, Md Golam Moazzam</div>
+                <div class="publication-journal">Plos One (JournalRank: Q1), 2024</div>
+                <a href="https://doi.org/10.1371/journal.pone.0311161" class="publication-link" target="_blank">View Publication</a>
+              </div>
+              
+              <div class="publication-item">
+                <div class="publication-title">From facebook posts to news headlines: using transformer models to predict post-disaster impact on mass media content</div>
+                <div class="publication-authors">Samiha Maisha Jeba, Tanjim Taharat Aurpa*, Md Rawnak Saif Adib</div>
+                <div class="publication-journal">Social Network Analysis and Mining (JournalRank: Q1), 2024</div>
+                <a href="https://link.springer.com/article/10.1007/s13278-024-01363-1" class="publication-link" target="_blank">View Publication</a>
+              </div>
+              
+              <div class="publication-item">
+                <div class="publication-title">Shomikoron: Dataset to discover equations from Bangla Mathematical text</div>
+                <div class="publication-authors">Tanjim Taharat Aurpa*, Kazi Noshin Fariha, Kawser Hossain</div>
+                <div class="publication-journal">Data in Brief (JournalRank: Q3), 2024</div>
+                <a href="https://doi.org/10.1016/j.dib.2024.110742" class="publication-link" target="_blank">View Publication</a>
+              </div>
+            </div>
+
+            <span class="number-page">3</span>
+
+            <!-- next button -->
+            <span class="nextprev-btn" data-page="turn-2">
+              <i class="bx bx-chevron-right"></i>
+            </span>
+
+          </div>
+          <!-- page 4 (my skills) -->
+          <div class="page-back">
+            <h1 class="title">My Skills</h1>
+
+            <div class="skills-box">
+              <div class="skills-content">
+                <h3>Programming Languages</h3>
+                <div class="content">
+                  <span><i class="bx bxl-python"></i>Python</span>
+                  <span><i class="bx bxl-java"></i>Java</span>
+                  <span><i class="bx bxl-c-plus-plus"></i>C++</span>
+                  <span><i class="bx bx-code"></i>C</span>
+                </div>
+              </div>
+
+              <div class="skills-content">
+                <h3>Web Development</h3>
+                <div class="content">
+                  <span><i class="bx bxl-html5"></i>HTML</span>
+                  <span><i class="bx bxl-css3"></i>CSS</span>
+                  <span><i class="bx bxl-javascript"></i>JavaScript</span>
+                  <span><i class="bx bxl-bootstrap"></i>Bootstrap</span>
+                  <span><i class="bx bxl-spring-boot"></i>Spring Boot</span>
+                </div>
+              </div>
+
+              <div class="skills-content">
+                <h3>Tools & Technologies</h3>
+                <div class="content">
+                  <span><i class="bx bxl-latex"></i>LaTeX</span>
+                  <span><i class="bx bx-cloud"></i>Cloud Computing</span>
+                  <span><i class="bx bxl-adobe"></i>Adobe After Effects</span>
+                  <span><i class="bx bx-video"></i>Camtasia</span>
+                </div>
+              </div>
+            </div>
+
+            <span class="number-page">4</span>
+
+            <!-- next button -->
+            <span class="nextprev-btn back" data-page="turn-2">
+              <i class="bx bx-chevron-left"></i>
+            </span>
+          </div>
+        </div>
+
+            <!-- page 5 & 6 -->
+            <div class="book-page page-right turn" id="turn-3">
+                <!-- page 5 (latest project or many portfolio) -->
+                <div class="page-front">
+                    <h1 class="title">Achievements</h1>
+
+                    <div class="workeduc-box achievements-box">
+                      <div class="workeduc-content">
+                          <span class="year"><i class="bx bxs-calendar"></i>2024-25</span>
+                          <h3>University Grants Commission Financed Research in UFTB</h3>
+                          <p>Project: Aspect based sentiment Analysis on Ukraine-Russia War</p>
+                      </div>
+
+                      <div class="workeduc-content">
+                          <span class="year"><i class="bx bxs-calendar"></i>2023-24</span>
+                          <h3>University Grants Commission Financed Research in UFTB</h3>
+                          <p>Project: Multiple Choice Question Answering</p>
+                      </div>
+
+                      <div class="workeduc-content">
+                          <span class="year"><i class="bx bxs-calendar"></i>2022</span>
+                          <h3>Miyan Publication Award</h3>
+                          <p>IUBAT - International University of Business Agriculture and Technology</p>
+                          <p>Project: Context Based Question Answering</p>
+                      </div>
+                      
+                      <div class="workeduc-content">
+                          <span class="year"><i class="bx bxs-calendar"></i>June 2020</span>
+                          <h3>Best Paper Award</h3>
+                          <p>IEEE Region 10 Symposium (TENSYMP) 2020</p>
+                          <p>Project: Topic wise Active Users Clustering</p>
+                      </div>
+                      
+                      <div class="workeduc-content">
+                          <span class="year"><i class="bx bxs-calendar"></i>2020-2021</span>
+                          <h3>The Duke of Edinburgh's Award (Direct Gold)</h3>
+                          <p>The Duke of Edinburgh's Award Foundation Bangladesh</p>
+                      </div>
+                      
+                      <div class="workeduc-content">
+                          <span class="year"><i class="bx bxs-calendar"></i>2022-23</span>
+                          <h3>National Science and Technology Fellowship</h3>
+                          <p>Ministry of Science and Technology Bangladesh</p>
+                          <p>Project: Multilabel Instruction Classification</p>
+                      </div>
+                      
+                      <!-- Additional achievements to demonstrate scrolling -->
+                      <div class="workeduc-content">
+                          <span class="year"><i class="bx bxs-calendar"></i>2021</span>
+                          <h3>Outstanding Research Contribution Award</h3>
+                          <p>Jahangirmagar University - For significant contributions to NLP research</p>
+                      </div>
+                      
+                      <div class="workeduc-content">
+                          <span class="year"><i class="bx bxs-calendar"></i>2020</span>
+                          <h3>Dean's List for Academic Excellence</h3>
+                          <p>Jahangirmagar University - Recognized for outstanding academic performance</p>
+                      </div>
+                      
+                      <div class="workeduc-content">
+                          <span class="year"><i class="bx bxs-calendar"></i>2019</span>
+                          <h3>Best Project Award - University Tech Fest</h3>
+                          <p>Jahangirmagar University - Awarded for innovative software project</p>
+                      </div>
+                      
+                      <div class="workeduc-content">
+                          <span class="year"><i class="bx bxs-calendar"></i>2018</span>
+                          <h3>Merit Scholarship</h3>
+                          <p>Jahangirmagar University - Awarded for academic excellence</p>
+                      </div>
+                  </div>
+
+                    <span class="number-page">5</span>
+
+                    <!-- next button -->
+                    <span class="nextprev-btn" data-page="turn-3">
+                      <i class="bx bx-chevron-right"></i>
+                    </span>
+                </div>
+
+
+                <!-- page 6 (contact me!) -->
+                <div class="page-back">
+                    <h1 class="title">Contact Me!</h1>
+
+                    <div class="contact-box">
+                      <form action="">
+                        <input type="text" class="field" placeholder="Full Name" required>
+                        <input type="email" class="field" placeholder="Email Address" required>
+                        <textarea name="" id="" cols="30" rows="10" class="field" placeholder="Your Message"></textarea>
+                        <input type="submit" value="Send Message" class="btn">
+                      </form>
+                    </div>
+
+                    <span class="number-page">6</span>
+
+                    <!-- next button -->
+                    <span class="nextprev-btn back" data-page="turn-3">
+                      <i class="bx bx-chevron-left"></i>
+                    </span>
+
+                    <a href="#" class="back-profile">
+                      <p>Profile</p>
+                      <i class="bx bxs-user"></i>
+                    </a>
+                </div>
+
+
+
+
+            </div>
+      </div>
+    </div>
+
+    <!-- script -->
+    <script>
+      const pageTurnBtn = document.querySelectorAll('.nextprev-btn');
+
+      pageTurnBtn.forEach((el, index) => {
+          el.onclick = () => {
+
+              const pageTurnId = el.getAttribute('data-page');
+              const pageTurn = document.getElementById(pageTurnId);
+
+              if(pageTurn.classList.contains('turn')){
+                  pageTurn.classList.remove('turn');
+
+                  setTimeout(() => {
+                      pageTurn.style.zIndex = 2 - index;
+                  }, 500);
+
+              }else{
+                  pageTurn.classList.add('turn');
+
+                  setTimeout(() => {
+                      pageTurn.style.zIndex = 2 + index;
+                  }, 500);
+              }
+          }
+      });
+
+
+      // contact me button when click
+      const pages = document.querySelectorAll('.book-page.page-right');
+      const contactMeBtn = document.querySelector('.btn.contact-me');
+
+      contactMeBtn.onclick = () => {
+          pages.forEach((page, index) => {
+              setTimeout(() => {
+
+                  page.classList.add('turn');
+                  setTimeout(() => {
+                      page.style.zIndex = 20 + index;
+                  },500);
+              }, (index + 1) * 200 + 100)
+          });
+      }
+
+
+      // create reverse index function
+      let totalPages = pages.length;
+      let pageNumber = 0;
+
+      function reverseIndex() {
+          pageNumber--;
+          if(pageNumber < 0){
+              pageNumber = totalPages - 1;
+          }
+      }
+
+
+      // back profile button when click
+      const backProfileBtn = document.querySelector('.back-profile');
+
+      backProfileBtn.onclick = () => {
+          pages.forEach((_, index) => {
+              setTimeout(() => {
+                  reverseIndex();
+
+                  pages[pageNumber].classList.remove('turn');
+
+                  setTimeout(() => {
+                      reverseIndex();
+                      pages[pageNumber].style.zIndex = 10 + index;
+                  }, 500)
+              }, (index + 1) * 200 + 100)
+
+          })
+      }
+
+
+      // opening animation
+      const coverRight = document.querySelector('.cover.cover-right');
+      const pageLeft = document.querySelector('.book-page.page-left');
+
+
+      // open animation (cover right animation)
+      setTimeout(() => {
+          coverRight.classList.add('turn');
+      }, 2100);
+
+      setTimeout(() => {
+          coverRight.style.zIndex = -1;
+      }, 2800);
+
+
+      pages.forEach((_, index) => {
+          setTimeout(() => {
+              reverseIndex();
+
+              pages[pageNumber].classList.remove('turn');
+
+              setTimeout(() => {
+                  reverseIndex();
+                  pages[pageNumber].style.zIndex = 10 + index;
+              }, 500)
+          }, (index + 1) * 200 + 2100)
+
+      })
+    </script>
+  </body>
+</html>
